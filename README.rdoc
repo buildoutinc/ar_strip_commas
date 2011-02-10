@@ -2,6 +2,8 @@
 
 This gem adds two class methods to ActiveRecord::Base for automatically handling the conversion of strings with commas ("1,203") to the intended value on numeric columns.
 
+
+
 **self.strip_commas_from(*columns)**
 
 Remove commas on the specified column. e.g.
@@ -23,7 +25,11 @@ Remove commas from all numeric columns. e.g.
 	widget.weight == 1872.0  # true
 
 
-= the right way?
+= Installation
+
+	sudo gem install ar_strip_commas
+
+= The right way?
 
 I'm surprised I couldn't find anything built into rails for handling this. If someone knows the "right way" to handle this, send me an email and I'll replace this project with a readme describing it.
 
