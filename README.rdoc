@@ -6,21 +6,21 @@ This gem adds two class methods to ActiveRecord::Base for automatically handling
 
 Remove commas on the specified column. e.g.
 
-class Widget < ActiveRecord::Base
-	strip_commas_from :price
-end
-Widget.new(:price => "1,200").price == 1200    # true
+	class Widget < ActiveRecord::Base
+	  strip_commas_from :price
+	end
+	Widget.new(:price => "1,200").price == 1200    # true
 
 **self.strip_commas_from_all_numbers**
 
 Remove commas from all numeric columns. e.g.
 
-class Widget < ActiveRecord::Base
-	strip_commas_from_all_numbers
-end
-widget = Widget.new(:price => "1,200", :weight => "1,872.0")
-widget.price == 1200     # true
-widget.weight == 1872.0  # true
+	class Widget < ActiveRecord::Base
+	  strip_commas_from_all_numbers
+	end
+	widget = Widget.new(:price => "1,200", :weight => "1,872.0")
+	widget.price == 1200     # true
+	widget.weight == 1872.0  # true
 
 
 = the right way?
