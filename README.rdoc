@@ -1,19 +1,30 @@
 = ar_strip_commas
 
-Description goes here.
+This gem adds two class methods to ActiveRecord::Base for automatically handling the conversion of strings with commas ("1,203") to the intended value on numeric columns.
 
-== Contributing to ar_strip_commas
- 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
-* Fork the project
-* Start a feature/bugfix branch
-* Commit and push until you are happy with your contribution
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+**self.strip_commas_from(*columns)**
 
-== Copyright
+Remove commas on the specified column. e.g.
 
-Copyright (c) 2011 Jason Tillery. See LICENSE.txt for
-further details.
+class Widget < ActiveRecord::Base
+	strip_commas_from :price
+end
+Widget.new(:price => "1,200").price == 1200    # true
+
+**self.strip_commas_from_all_numbers**
+
+Remove commas from all numeric columns. e.g.
+
+class Widget < ActiveRecord::Base
+	strip_commas_from_all_numbers
+end
+widget = Widget.new(:price => "1,200", :weight => "1,872.0")
+widget.price == 1200     # true
+widget.weight == 1872.0  # true
+
+
+= the right way?
+
+I'm surprised I couldn't find anything built into rails for handling this. If someone knows the "right way" to handle this, send me an email and I'll replace this project with a readme describing it.
+
 
